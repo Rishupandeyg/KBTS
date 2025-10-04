@@ -11,21 +11,18 @@ import {
   FaSignInAlt,
   FaUserPlus,
   FaUser,
-  FaSignOutAlt
+  FaSignOutAlt,
 } from "react-icons/fa";
 import logo from "../assets/logo.png";
 import { AuthContext } from "../context/AuthContext";
 
-export default function Navbar({ logoRef }) {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [aboutOpen, setAboutOpen] = useState(false);
   const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-
-  // ✅ Agar home page pe ho to logo animate hoga
-  const showLogo = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -38,53 +35,65 @@ export default function Navbar({ logoRef }) {
     navigate("/");
   };
 
-  // Determine dashboard path based on role
   const dashboardPath = () => {
     if (!user) return "/login";
     if (user.role === "candidate") return "/dashboard/candidate";
     if (user.role === "employer") return "/dashboard/employer";
     if (user.role === "admin") return "/dashboard/admin";
-    return "/"; // fallback
+    return "/";
   };
+
+  // Home page pe animation, baki pages pe normal
+  const isHome = location.pathname === "/";
 
   return (
     <>
       {/* Navbar */}
       <nav
         className={`fixed top-0 left-0 w-full z-50 transition-colors duration-300 ${
-          scrolled ? "bg-white/90 shadow-md backdrop-blur" : ""
+          scrolled ? "bg-white/90 shadow-md backdrop-blur" : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex justify-between h-16 items-center">
             {/* Logo */}
             <div className="flex-shrink-0">
-  <Link to="/">
-    <motion.img
-      ref={logoRef}
-      src={logo}
-      alt="KBTB"
-      className="h-auto w-[150px]"
-      style={{ opacity: showLogo ? 1 : 0 }} // ✅ ab start me hidden
-      initial={{ opacity: 0, y: -20 }}
-      animate={showLogo ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-      transition={{ duration: 0.6 }}
-    />
-  </Link>
-</div>
-
+              <Link to="/">
+                {isHome ? (
+                  <motion.img
+                    src={logo}
+                    alt="KBTB"
+                    className="h-auto w-[150px]"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6 }}
+                  />
+                ) : (
+                  <img src={logo} alt="KBTB" className="h-auto w-[150px]" />
+                )}
+              </Link>
+            </div>
 
             {/* Desktop Links */}
             <div className="hidden md:flex space-x-8 font-bold text-red-500">
-              <Link to="/" className="flex flex-col items-center group hover:text-red-600">
+              <Link
+                to="/"
+                className="flex flex-col items-center group hover:text-red-600"
+              >
                 <FaHome className="text-xl mb-1 group-hover:scale-110 transition" />
                 <span>Home</span>
               </Link>
-              <Link to="/job" className="flex flex-col items-center group hover:text-red-600">
+              <Link
+                to="/job"
+                className="flex flex-col items-center group hover:text-red-600"
+              >
                 <FaBriefcase className="text-xl mb-1 group-hover:scale-110 transition" />
                 <span>Job</span>
               </Link>
-              <Link to="/gallery" className="flex flex-col items-center group hover:text-red-600">
+              <Link
+                to="/gallery"
+                className="flex flex-col items-center group hover:text-red-600"
+              >
                 <FaImages className="text-xl mb-1 group-hover:scale-110 transition" />
                 <span>Gallery</span>
               </Link>
@@ -96,7 +105,9 @@ export default function Navbar({ logoRef }) {
                 onMouseLeave={() => setAboutOpen(false)}
               >
                 <FaInfoCircle className="text-xl mb-1 group-hover:scale-110 transition" />
-                <span className="cursor-pointer hover:text-red-600">AboutUs</span>
+                <span className="cursor-pointer hover:text-red-600">
+                  AboutUs
+                </span>
                 {aboutOpen && (
                   <div className="absolute top-full mt-2 w-40 bg-white text-red-500 font-bold shadow-lg rounded-md overflow-hidden z-50">
                     <Link
@@ -124,11 +135,17 @@ export default function Navbar({ logoRef }) {
               {/* Auth Links */}
               {!user ? (
                 <>
-                  <Link to="/login" className="flex flex-col items-center group hover:text-red-600">
+                  <Link
+                    to="/login"
+                    className="flex flex-col items-center group hover:text-red-600"
+                  >
                     <FaSignInAlt className="text-xl mb-1 group-hover:scale-110 transition" />
                     <span>Login</span>
                   </Link>
-                  <Link to="/register" className="flex flex-col items-center group hover:text-red-600">
+                  <Link
+                    to="/register"
+                    className="flex flex-col items-center group hover:text-red-600"
+                  >
                     <FaUserPlus className="text-xl mb-1 group-hover:scale-110 transition" />
                     <span>Register</span>
                   </Link>
@@ -177,31 +194,59 @@ export default function Navbar({ logoRef }) {
         </div>
 
         <div className="flex flex-col space-y-6 mt-10 ml-6 font-bold">
-          <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+          <Link
+            to="/"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-2"
+          >
             <FaHome /> Home
           </Link>
-          <Link to="/job" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+          <Link
+            to="/job"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-2"
+          >
             <FaBriefcase /> Job
           </Link>
-          <Link to="/gallery" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+          <Link
+            to="/gallery"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-2"
+          >
             <FaImages /> Gallery
           </Link>
-          <Link to="/about" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+          <Link
+            to="/about"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-2"
+          >
             <FaInfoCircle /> AboutUs
           </Link>
 
           {!user ? (
             <>
-              <Link to="/login" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+              <Link
+                to="/login"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-2"
+              >
                 <FaSignInAlt /> Login
               </Link>
-              <Link to="/register" onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+              <Link
+                to="/register"
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-2"
+              >
                 <FaUserPlus /> Register
               </Link>
             </>
           ) : (
             <>
-              <Link to={dashboardPath()} onClick={() => setIsOpen(false)} className="flex items-center gap-2">
+              <Link
+                to={dashboardPath()}
+                onClick={() => setIsOpen(false)}
+                className="flex items-center gap-2"
+              >
                 <FaUser /> Profile
               </Link>
               <button onClick={handleLogout} className="flex items-center gap-2">

@@ -86,7 +86,8 @@ export default function Courses() {
 
             return (
               <div key={index} className="px-3">
-                <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden hover:scale-105 transition transform h-full flex flex-col min-h-[400px]">
+                {/* Card with Hover Red Glow */}
+                <div className="bg-gray-900 rounded-lg shadow-lg overflow-hidden h-full flex flex-col min-h-[400px] hover:shadow-red-500 hover:shadow-2xl transition duration-300">
                   {/* Image */}
                   <img
                     src={course.img}
@@ -130,3 +131,4 @@ export default function Courses() {
     </section>
   );
 }
+
