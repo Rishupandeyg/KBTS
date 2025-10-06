@@ -75,7 +75,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Links */}
-            <div className="hidden md:flex space-x-8 font-bold text-red-500">
+            <div className="hidden md:flex space-x-8 font-semibold text-red-500">
               <Link
                 to="/"
                 className="flex flex-col items-center group hover:text-red-600"
