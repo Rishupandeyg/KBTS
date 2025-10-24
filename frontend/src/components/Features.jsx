@@ -44,7 +44,7 @@ export default function Features() {
 
       {/* Card content */}
       <div className="relative z-10">
-        <card.icon className="w-12 h-12 text-red-400 mb-4" />
+        <card.icon className="w-12 h-12 text-red-600 semi-bold mb-4" />
         <h3 className="text-2xl font-semibold text-white mb-3">{card.title}</h3>
         <p className="text-gray-400">{card.desc}</p>
       </div>
@@ -56,7 +56,7 @@ export default function Features() {
       {/* Mission Section */}
       <section className="py-20 px-6 bg-gray-950">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-red-500 mb-10 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-red-600 mb-10 text-center">
             Our Mission
           </h2>
           <p className="text-gray-300 leading-relaxed mb-10 text-center max-w-3xl mx-auto">
@@ -74,7 +74,7 @@ export default function Features() {
       {/* Vision Section */}
       <section className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-red-500 mb-10 text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold text-red-600 mb-10 text-center">
             Our Vision
           </h2>
           <p className="text-gray-300 leading-relaxed mb-10 text-center max-w-3xl mx-auto">

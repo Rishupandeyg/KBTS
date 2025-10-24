@@ -136,10 +136,10 @@ export default function EmployerDashboard() {
       );
       setJobData({ company: "", title: "", description: "", location: "", category: "" });
       await fetchJobsPosted();
-      alert("✅ Job posted successfully!");
+      alert("Job posted successfully!");
     } catch (err) {
       console.error(err);
-      alert("❌ Error posting job");
+      alert("Error posting job");
     }
   };
 
@@ -157,7 +157,7 @@ export default function EmployerDashboard() {
       await fetchJobsPosted();
     } catch (err) {
       console.error(err);
-      alert("❌ Failed to delete job");
+      alert(" Failed to delete job");
     }
   };
 
@@ -174,7 +174,7 @@ export default function EmployerDashboard() {
       await fetchJobsPosted();
     } catch (err) {
       console.error(err);
-      alert("❌ Failed to update job");
+      alert(" Failed to update job");
     }
   };
 

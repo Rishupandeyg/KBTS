@@ -95,8 +95,8 @@ export const Job = () => {
     <div className="p-6 space-y-6 bg-black min-h-screen">
       {/* Header Section */}
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-extrabold text-white">Available Jobs</h1>
-        <p className="text-gray-400 mt-2">
+        <h1 className="text-3xl font-semibold text-red-600">Available Jobs</h1>
+        <p className="text-gray-400 mt-2">.
           Explore the latest opportunities and apply now.
         </p>
       </div>

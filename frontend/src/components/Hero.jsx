@@ -102,9 +102,9 @@ export default function Hero() {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-4xl md:text-6xl font-extrabold leading-tight text-center mb-12"
+        className="text-4xl md:text-6xl font-semibold leading-tight text-center mb-12"
       >
-        <span className="text-red-500">{typedText}</span>
+        <span className="text-red-600">{typedText}</span>
         <span className="animate-pulse">|</span>
       </motion.h2>
 

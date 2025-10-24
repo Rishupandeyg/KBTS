@@ -9,15 +9,15 @@ export default function CandidatesPage({ candidates, deleteCandidate }) {
         <ul>
           {candidates.map((c) => (
             <li
-              key={c._id}
-              className="flex justify-between mb-4 items-center border-b pb-3"
+              key={c.id}
+              className="flex flex-col md:flex-row justify-between mb-6 items-start md:items-center border-b pb-4"
             >
               {/* Left: Photo + Info */}
-              <div className="flex items-center gap-4">
-                {/* Candidate Photo */}
+              <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
+                {/* Candidate Profile Photo */}
                 {c.photo ? (
                   <img
-                    src={`http://localhost:5000${c.photo}`} // full URL
+                    src={c.photo} // Cloudinary URL
                     alt={`${c.firstName} ${c.lastName}`}
                     className="w-12 h-12 rounded-full object-cover"
                   />
@@ -28,7 +28,7 @@ export default function CandidatesPage({ candidates, deleteCandidate }) {
                 )}
 
                 {/* Candidate Info */}
-                <div>
+                <div className="flex flex-col gap-1">
                   <p className="font-semibold">
                     {c.firstName} {c.lastName}
                   </p>
@@ -37,10 +37,10 @@ export default function CandidatesPage({ candidates, deleteCandidate }) {
                   </p>
                   <p className="text-sm text-gray-600">{c.email}</p>
 
-                  {/* Resume */}
+                  {/* Resume Link */}
                   {c.resume ? (
                     <a
-                      href={`http://localhost:5000${c.resume}`} // full URL
+                      href={c.resume}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-500 underline text-sm"
@@ -50,13 +50,54 @@ export default function CandidatesPage({ candidates, deleteCandidate }) {
                   ) : (
                     <span className="text-gray-500 text-sm">No Resume</span>
                   )}
+
+                  {/* Audio Link */}
+                  {c.audio && (
+                    <a
+                      href={c.audio}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 underline text-sm"
+                    >
+                      View Audio
+                    </a>
+                  )}
+
+                  {/* Video Link */}
+                  {c.video && (
+                    <a
+                      href={c.video}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-500 underline text-sm"
+                    >
+                      View Video
+                    </a>
+                  )}
+
+                  {/* Other Uploads */}
+                  {c.uploads && c.uploads.length > 0 && (
+                    <div className="mt-2 flex flex-col gap-1">
+                      {c.uploads.map((file, index) => (
+                        <a
+                          key={index}
+                          href={file.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 underline text-sm"
+                        >
+                          {file.type || "File"}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
 
               {/* Right: Delete Button */}
               <button
-                onClick={() => deleteCandidate(c._id)}
-                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                onClick={() => deleteCandidate(c.id)}
+                className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition mt-4 md:mt-0"
               >
                 Delete
               </button>
@@ -67,3 +108,4 @@ export default function CandidatesPage({ candidates, deleteCandidate }) {
     </div>
   );
 }
+

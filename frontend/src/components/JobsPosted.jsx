@@ -44,7 +44,7 @@ export default function JobsPosted({ jobsPosted = [], onDelete, onEdit, loading 
           {jobsPosted.map((job) => (
             <div
               key={job._id}
-              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105 border-l-4 border-blue-500"
+              className="bg-black p-6 rounded-2xl shadow-md hover:shadow-lg transition-transform transform hover:scale-105 border-l-4 border-blue-500"
             >
               {editingJob === job._id ? (
                 <div>

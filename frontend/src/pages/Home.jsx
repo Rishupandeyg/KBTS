@@ -5,8 +5,9 @@ import Features from "../components/Features";
 import Courses from "../components/Courses";
 import Gallery from "./Gallery";
 import ContactUs from "../components/ContactUs";
-import bgVideo from "../assets/no1.mp4";
-import Preloader from "../components/Preloader"; // ✅ Preloader import
+import bgVideo from "../assets/no7.mp4";
+import Preloader from "../components/Preloader";
+import HomepageJobs from "../components/HomePageJobs";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,6 @@ export default function Home() {
       {/* Preloader */}
       {loading && <Preloader onFinish={() => setLoading(false)} />}
 
-      {/* Main content after preloader */}
       {!loading && (
         <>
           {/* Navbar */}
@@ -34,18 +34,34 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-black/50" />
 
-            <div className="relative z-10 px-4 sm:px-8">
-              <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold text-red-500">
-                Welcome to KBTS
-              </h1>
-
-              <p className="mt-4 text-lg sm:text-xl lg:text-2xl max-w-2xl mx-auto text-white">
-                Connecting Talent with Opportunities – Join us today!
+            {/* Marquee inside Hero at top */}
+            <div className="absolute top-0 w-full flex justify-center z-20 overflow-hidden px-4 sm:px-8">
+              <style>{`
+                @keyframes smoothMarquee {
+                  0% { transform: translateX(110%); opacity: 0; }
+                  5% { opacity: 1; }
+                  95% { opacity: 1; }
+                  100% { transform: translateX(-110%); opacity: 0; }
+                }
+              `}</style>
+              <p className="text-sm sm:text-base lg:text-lg text-orange-600 inline-block whitespace-nowrap will-change-transform animate-[smoothMarquee_15s_linear_infinite]">
+                Connecting Talent with Opportunities – Join us today! 
               </p>
+            </div>
+
+            {/* Hero Text */}
+            <div className="relative z-10 px-4 sm:px-8 pb-12 md:pb-20 lg:pb-32 pt-16">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-red-600">
+                Welcome to
+              </h1>
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-orange-700 pt-4 sm:pt-6 md:pt-8">
+                KBTS
+              </h1>
             </div>
           </section>
 
-          {/* Other sections */}
+          {/* Other Sections */}
+         <HomepageJobs/>
           <Hero />
           <Courses />
           <Gallery compact />
